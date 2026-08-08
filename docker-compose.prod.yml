@@ -1,9 +1,5 @@
-# Production stack: pulls images from Artifact Registry (no local build).
-# Used by GitHub Actions CD and for manual deploys on the VM.
-#
-#   docker compose -f docker-compose.prod.yml pull
-#   docker compose -f docker-compose.prod.yml up -d
-
+# Production stack: Artifact Registry images (no local build).
+# IMAGE_TAG defaults to latest; CD sets it to the git SHA from the build.
 services:
   db:
     image: postgres:16
@@ -21,7 +17,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: europe-central2-docker.pkg.dev/car-garage-tracker/car-garage-tracker/backend:latest
+    image: europe-central2-docker.pkg.dev/car-garage-tracker/car-garage-tracker/backend:${IMAGE_TAG:-latest}
     environment:
       DATABASE_URL: ${DATABASE_URL}
       SECRET_KEY: ${SECRET_KEY}
@@ -37,7 +33,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: europe-central2-docker.pkg.dev/car-garage-tracker/car-garage-tracker/frontend:latest
+    image: europe-central2-docker.pkg.dev/car-garage-tracker/car-garage-tracker/frontend:${IMAGE_TAG:-latest}
     environment:
       NUXT_PUBLIC_API_BASE_URL: ${NUXT_PUBLIC_API_BASE_URL}
       NUXT_API_BASE_URL_INTERNAL: ${NUXT_API_BASE_URL_INTERNAL}
