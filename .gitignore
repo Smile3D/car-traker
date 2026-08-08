@@ -1,0 +1,19 @@
+# Env
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+.fleet/
+
+# Claude Code — локальные, не общие
+.claude/settings.local.json
+
+# Docker
+docker-compose.override.yml

@@ -1,0 +1,947 @@
+{
+  "common": {
+    "buttons": {
+      "add": "Додати",
+      "adding": "Додавання…",
+      "save": "Зберегти",
+      "saving": "Збереження…",
+      "cancel": "Скасувати",
+      "edit": "Змінити",
+      "delete": "Видалити",
+      "deleting": "Видалення…",
+      "close": "Закрити",
+      "continue": "Продовжити"
+    },
+    "units": {
+      "km": "км",
+      "liters": "л"
+    },
+    "vin": "VIN",
+    "mileage": "Пробіг",
+    "addedAt": "Додано"
+  },
+  "errors": {
+    "unexpected": "Сталася помилка, спробуйте ще раз"
+  },
+  "validation": {
+    "required": "Обов'язкове поле",
+    "invalidEmail": "Некоректна email-адреса",
+    "minLength": "Мінімум {min} символів",
+    "positiveNumber": "Повинно бути більше 0",
+    "nonNegativeNumber": "Не може бути від'ємним",
+    "numericValue": "Тільки цифри",
+    "atLeastOneItem": "Додайте принаймні одну послугу",
+    "invalidPhone": "Телефон повинен містити 9 цифр у форматі +380 XX XXX XX XX"
+  },
+  "nav": {
+    "appTitle": "Car Garage Tracker",
+    "greeting": "Привіт, {email}",
+    "logout": "Вийти",
+    "settings": "Налаштування",
+    "currencyRateDisplay": "$1 = {rate} ₴"
+  },
+  "auth": {
+    "login": {
+      "emailLabel": "Email",
+      "passwordLabel": "Пароль",
+      "submit": "Увійти",
+      "submitting": "Вхід…",
+      "noAccount": "Немає акаунту?",
+      "registerLink": "Зареєструватися"
+    },
+    "register": {
+      "emailLabel": "Email",
+      "passwordLabel": "Пароль",
+      "submit": "Зареєструватися",
+      "submitting": "Створення акаунту…",
+      "hasAccount": "Вже є акаунт?",
+      "loginLink": "Увійти",
+      "businessCheckbox": "Я авто-майданчик",
+      "businessHeading": "Реєстрація для авто-майданчиків",
+      "inviteBanner": "Ви приєднуєтесь до компанії {company}.",
+      "invitePosition": "Посада: {position}.",
+      "inviteInvalid": "Це запрошення більше недійсне (уже використане, скасоване або протерміноване).",
+      "regularRegisterLink": "Перейти до звичайної реєстрації"
+    },
+    "confirmEmail": {
+      "checkEmailTitle": "Перевірте пошту",
+      "checkEmailBody": "Ми надіслали лист із підтвердженням на {email}. Перейдіть за посиланням у листі, щоб завершити реєстрацію.",
+      "resendButton": "Надіслати лист повторно",
+      "resendButtonCooldown": "Надіслати повторно через {seconds} с",
+      "resendSuccessMessage": "Лист надіслано ще раз",
+      "verifying": "Підтверджуємо email…",
+      "errorInvalid": "Посилання для підтвердження недійсне.",
+      "errorExpired": "Посилання протерміноване. Надішліть новий лист підтвердження.",
+      "errorAlreadyUsed": "Email вже підтверджено. Спробуйте увійти.",
+      "resendFormPrompt": "Введіть email, щоб отримати нове посилання",
+      "loginBlockTitle": "Підтвердіть email, щоб увійти",
+      "loginBlockBody": "Лист із підтвердженням надіслано на {email}."
+    },
+    "forgotPassword": {
+      "title": "Забули пароль?",
+      "body": "Введіть email, і ми надішлемо посилання для скидання пароля.",
+      "emailLabel": "Email",
+      "submit": "Надіслати посилання",
+      "submitting": "Надсилаємо…",
+      "checkEmailTitle": "Перевірте пошту",
+      "checkEmailBody": "Якщо акаунт з таким email існує, ми надіслали на нього лист із посиланням для скидання пароля.",
+      "backToLoginLink": "Повернутися до входу",
+      "loginLinkText": "Забули пароль?"
+    },
+    "resetPassword": {
+      "title": "Новий пароль",
+      "newPasswordLabel": "Новий пароль",
+      "confirmPasswordLabel": "Підтвердіть пароль",
+      "passwordMismatch": "Паролі не збігаються",
+      "submit": "Зберегти новий пароль",
+      "submitting": "Зберігаємо…",
+      "successMessage": "Пароль успішно змінено.",
+      "goToLoginLink": "Перейти до входу",
+      "errorInvalid": "Посилання для скидання пароля недійсне.",
+      "errorExpired": "Посилання протерміноване. Запросіть скидання пароля ще раз.",
+      "errorAlreadyUsed": "Це посилання вже використано."
+    }
+  },
+  "garage": {
+    "title": "Мій гараж",
+    "addCar": "Додати авто",
+    "totalCars": "Всього авто",
+    "emptyTitle": "У гаражі поки немає авто",
+    "emptySubtitle": "Додайте перший автомобіль, щоб почати вести історію обслуговування.",
+    "businessBannerText": "Заповніть дані компанії, щоб інші бачили вашу автоплощадку.",
+    "businessBannerLink": "Заповнити дані"
+  },
+  "settings": {
+    "title": "Налаштування",
+    "businessSectionTitle": "Дані компанії",
+    "companyNameLabel": "Назва компанії",
+    "businessPhoneLabel": "Телефон для зв'язку",
+    "businessTaxIdLabel": "ЄДРПОУ/ІПН (необов'язково)",
+    "savedMessage": "Дані збережено",
+    "myProfile": {
+      "sectionTitle": "Мій профіль",
+      "firstNameLabel": "Ім'я",
+      "firstNamePlaceholder": "Іван",
+      "lastNameLabel": "Прізвище",
+      "lastNamePlaceholder": "Петренко",
+      "phoneLabel": "Телефон",
+      "phonePlaceholder": "+380 XX XXX XX XX",
+      "socialLinksLabel": "Соціальні мережі",
+      "socialLinksPlaceholder": "instagram.com/username або {'@'}telegram_username",
+      "addSocialLinkButton": "+ Додати посилання",
+      "savedMessage": "Профіль збережено",
+      "uploadAvatarButton": "Завантажити фото",
+      "removeAvatarButton": "Видалити аватар",
+      "avatarUploading": "Завантаження…",
+      "avatarErrorInvalidType": "Непідтримуваний тип файлу. Дозволено: jpg, png, webp",
+      "avatarErrorTooLarge": "Файл завеликий (максимум 10 МБ)",
+      "avatarPreviewAlt": "Попередній перегляд аватара"
+    },
+    "currency": {
+      "sectionTitle": "Валюта",
+      "autoRateLabel": "Курс ПриватБанку",
+      "autoRateUpdatedAt": "(оновлено {datetime})",
+      "autoRateUnavailable": "Курс ПриватБанку зараз недоступний",
+      "manualRateLabel": "Свій курс",
+      "manualRatePlaceholder": "41.50",
+      "useAutoOption": "Орієнтуватись на курс ПриватБанку",
+      "useManualOption": "Орієнтуватись на свій курс",
+      "savedMessage": "Налаштування валюти збережено"
+    },
+    "telegram": {
+      "title": "Telegram",
+      "step1": "Відкрийте Telegram і знайдіть {'@'}BotFather",
+      "step2": "Надішліть команду /newbot і дотримуйтесь інструкцій для створення бота",
+      "step3": "Скопіюйте токен, який видасть BotFather (виглядає як 123456:ABC-DEF...)",
+      "step4": "Додайте створеного бота адміністратором у ваш канал/групу",
+      "step5": "Скопіюйте username каналу (наприклад {'@'}my_channel) або chat_id",
+      "step6": "Вставте токен і канал у поля нижче та натисніть \"Підключити\"",
+      "botTokenLabel": "Токен бота",
+      "botTokenPlaceholder": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+      "channelIdLabel": "Канал або chat_id",
+      "channelIdPlaceholder": "{'@'}my_channel",
+      "connectButton": "Підключити",
+      "connectingButton": "Підключення…",
+      "connectedStatus": "Підключено: {channel}",
+      "disconnectButton": "Відключити",
+      "disconnectConfirmTitle": "Відключити Telegram?",
+      "disconnectConfirmMessage": "Ви більше не зможете публікувати пости напряму в канал, доки не підключите Telegram знову."
+    }
+  },
+  "carForm": {
+    "addTitle": "Додати авто",
+    "editTitle": "Змінити авто",
+    "brandLabel": "Марка",
+    "modelLabel": "Модель",
+    "yearLabel": "Рік випуску",
+    "mileageLabel": "Пробіг, км",
+    "fuelTypeLabel": "Тип палива",
+    "fuelTypePetrol": "Бензин",
+    "fuelTypeDiesel": "Дизель",
+    "fuelTypeGas": "Газ",
+    "fuelTypeGasPetrol": "Газ/Бензин"
+  },
+  "carDetails": {
+    "backToGarage": "Назад до гаража",
+    "notFound": "Автомобіль не знайдено."
+  },
+  "serviceRecord": {
+    "tabs": {
+      "maintenance": "Історія ТО",
+      "repair": "Позаплановий ремонт"
+    },
+    "addRecord": "Додати запис",
+    "emptyMaintenance": "Записів про ТО поки немає.",
+    "emptyRepair": "Записів про ремонт поки немає.",
+    "total": "Разом"
+  },
+  "serviceRecordForm": {
+    "addTitleMaintenance": "Додати запис ТО",
+    "addTitleRepair": "Додати запис про ремонт",
+    "editTitle": "Змінити запис",
+    "dateLabel": "Дата",
+    "mileageLabelMaintenance": "Пробіг на момент ТО, км",
+    "mileageLabelRepair": "Пробіг на момент ремонту, км"
+  },
+  "serviceRecordItems": {
+    "label": "Що зроблено",
+    "namePlaceholder": "Назва послуги",
+    "pricePlaceholder": "Ціна",
+    "addItem": "Додати послугу"
+  },
+  "report": {
+    "button": "Сформувати звіт",
+    "modalTitle": "Звіт для оголошення",
+    "copy": "Скопіювати",
+    "copied": "Скопійовано в буфер обміну",
+    "currentMileage": "Поточний пробіг",
+    "historyTitle": "Історія обслуговування",
+    "recordsCount": "Записів: {count}",
+    "noHistory": "Історія обслуговування поки не велася",
+    "lastService": "Останнє обслуговування"
+  },
+  "fuelRefill": {
+    "tabLabel": "Заправки",
+    "addRefill": "Додати заправку",
+    "emptyState": "Заправок поки немає.",
+    "addTitle": "Додати заправку",
+    "editTitle": "Змінити заправку",
+    "amountLabel": "Кількість палива, л",
+    "costLabel": "Сума",
+    "mileageLabel": "Пробіг (необов'язково), км",
+    "stationLabel": "АЗС",
+    "stationOther": "Інше",
+    "stationOtherPlaceholder": "Назва АЗС",
+    "chartTitle": "Витрати на паливо по місяцях"
+  },
+  "receipts": {
+    "tabLabel": "Чеки",
+    "upload": "Завантажити",
+    "uploading": "Завантаження…",
+    "uploadTitle": "Завантажити чек",
+    "fileLabel": "Фото",
+    "chooseFile": "Виберіть фото",
+    "previewAlt": "Перегляд чека",
+    "descriptionLabel": "Опис (необов'язково)",
+    "descriptionPlaceholder": "Наприклад, заміна масла",
+    "emptyState": "Чеків поки немає.",
+    "errorInvalidType": "Непідтримуваний тип файлу. Дозволено: jpg, png, webp",
+    "errorTooLarge": "Файл завеликий (максимум 10 МБ)",
+    "deleteConfirmTitle": "Видалити чек?",
+    "deleteConfirmMessage": "Цю дію не можна скасувати. Фото буде видалено назавжди.",
+    "linkLabel": "Прив'язка (необов'язково)",
+    "linkNone": "Без прив'язки",
+    "linkServiceRecord": "Прив'язати до ТО/ремонту",
+    "linkFuelRefill": "Прив'язати до заправки",
+    "linkedToMaintenance": "Прив'язано до ТО від {date}",
+    "linkedToRepair": "Прив'язано до ремонту від {date}",
+    "linkedToFuelRefill": "Прив'язано до заправки від {date}"
+  },
+  "listingPhotos": {
+    "title": "Фото",
+    "uploadHint": "Перетягніть фото сюди або натисніть, щоб вибрати",
+    "uploading": "Завантаження…",
+    "limitReached": "Досягнуто ліміту фото ({max})",
+    "emptyState": "Фото ще не додані.",
+    "coverBadge": "Обкладинка",
+    "deleteConfirmTitle": "Видалити фото?",
+    "deleteConfirmMessage": "Цю дію не можна скасувати. Фото буде видалено назавжди.",
+    "stagingLimitError": "«{name}»: досягнуто ліміту фото ({max})",
+    "stagingTypeError": "«{name}»: непідтримуваний формат файлу. Дозволено: jpg, png, webp",
+    "stagingSizeError": "«{name}»: файл завеликий (максимум 10МБ)"
+  },
+  "charts": {
+    "tabLabel": "Графіки",
+    "tabs": {
+      "monthlyExpenses": "За місяцями",
+      "toVsRepair": "ТО vs Ремонт",
+      "byMileage": "За пробігом",
+      "cumulative": "Накопичувально"
+    },
+    "noData": "Недостатньо даних для графіка.",
+    "datasetLabels": {
+      "expenses": "Витрати",
+      "cumulative": "Накопичувально"
+    },
+    "legend": {
+      "maintenance": "ТО",
+      "repair": "Ремонт"
+    }
+  },
+  "crm": {
+    "sidebar": {
+      "dashboard": "Дашборд",
+      "inventory": "Інвентар",
+      "addCar": "Додати авто",
+      "archive": "Архів",
+      "service": "СТО",
+      "dealHistory": "Історія угод",
+      "analytics": "Аналітика",
+      "settings": "Налаштування",
+      "clients": "Клієнти",
+      "composer": "Соц мережі",
+      "employees": "Співробітники",
+      "salesPlans": "Плани продажів"
+    },
+    "dashboard": {
+      "title": "Дашборд",
+      "totalNetProfit": "Загальний чистий прибуток (продано)"
+    },
+    "analytics": {
+      "personalScopeSubtitle": "Ваша особиста статистика",
+      "averageMargin": "Середня маржа",
+      "totalProfit": "Загальний прибуток за весь час",
+      "activeCount": "Активних лотів",
+      "overdueCount": "Прострочених дедлайнів",
+      "overdueSectionTitle": "Прострочені дедлайни",
+      "noOverdue": "Прострочених дедлайнів немає",
+      "deadlineWas": "Дедлайн був",
+      "overdueByDays": "прострочено на {count} дн.",
+      "goToListing": "До лоту",
+      "monthlyProfitChart": "Прибуток по місяцях",
+      "statusChart": "Статуси лотів",
+      "averageDaysToSellChart": "Середній термін продажу",
+      "topProfitChart": "Топ за прибутком",
+      "days": "днів",
+      "noData": "Недостатньо даних для графіка.",
+      "noSoldData": "Недостатньо даних: ще немає проданих лотів."
+    },
+    "inventory": {
+      "title": "Інвентар",
+      "addButton": "Додати авто",
+      "emptyTitle": "Лотів поки немає",
+      "emptySubtitle": "Додайте перший лот, щоб почати вести облік продажу авто.",
+      "emptyFilteredState": "Немає лотів із цим статусом.",
+      "filterAll": "Усі статуси",
+      "columns": {
+        "car": "Авто",
+        "status": "Статус",
+        "salePrice": "Ціна продажу",
+        "netProfit": "Чистий прибуток",
+        "daysOnLot": "Днів на площадці",
+        "deadline": "Дедлайн"
+      }
+    },
+    "archive": {
+      "title": "Архів",
+      "autoCleanupWarning": "Архів автоматично повністю очищується кожні 30 днів. Наступне очищення: {date}. Дані по угоді назавжди зберігаються в розділі «Історія угод».",
+      "tabs": {
+        "all": "Усі"
+      },
+      "emptyTitle": "Архів поки порожній",
+      "emptySubtitle": "Продані та зняті з продажу лоти з'являться тут.",
+      "emptyFilteredState": "Немає лотів із цим статусом.",
+      "columns": {
+        "closedDate": "Дата закриття",
+        "finalPrice": "Фінальна ціна",
+        "seller": "Продавець",
+        "buyer": "Покупець",
+        "manager": "Менеджер"
+      },
+      "selectAllLabel": "Виділити всі видимі лоти",
+      "selectRowLabel": "Виділити лот",
+      "selectedCount": "Виділено {count}",
+      "deleteSelectedButton": "Видалити обрані",
+      "bulkDeleteConfirmTitle": "Видалити обрані лоти?",
+      "bulkDeleteConfirmMessage": "Цю дію не можна скасувати. Буде видалено {count} лот(ів) назавжди, разом з пов'язаними клієнтами та фото. Лоти будуть видалені з Архіву, але запис про угоду залишиться в Історії угод."
+    },
+    "service": {
+      "title": "СТО",
+      "emptyTitle": "Наразі жоден лот не на СТО",
+      "emptySubtitle": "Лоти, відправлені на СТО, з'являться тут.",
+      "columns": {
+        "startDate": "Дата постановки",
+        "expectedEndDate": "Орієнтовна дата забирання",
+        "note": "Примітка"
+      },
+      "returnToWorkButton": "Повернути в роботу",
+      "returnToWorkConfirmTitle": "Повернути лот у роботу?",
+      "returnToWorkConfirmMessage": "Лот отримає статус «Активний» і знову з'явиться в Інвентарі."
+    },
+    "dealHistory": {
+      "title": "Історія угод",
+      "personalScopeSubtitle": "Ваші угоди",
+      "searchPlaceholder": "Пошук за продавцем або покупцем...",
+      "tabs": {
+        "all": "Усі"
+      },
+      "dateFromLabel": "Від",
+      "dateToLabel": "До",
+      "emptyState": "Історія угод поки порожня.",
+      "emptyFilteredState": "Немає угод, що відповідають фільтру.",
+      "columns": {
+        "closedDate": "Дата закриття",
+        "type": "Тип",
+        "car": "Авто",
+        "seller": "Продавець",
+        "buyer": "Покупець",
+        "manager": "Менеджер",
+        "finalPrice": "Фінальна ціна"
+      }
+    },
+    "clients": {
+      "title": "Клієнти",
+      "tabs": {
+        "sellers": "Продавці",
+        "buyers": "Покупці"
+      },
+      "addButton": "Додати клієнта",
+      "form": {
+        "addTitle": "Новий клієнт",
+        "nameLabel": "Ім'я",
+        "phoneLabel": "Телефон",
+        "emailLabel": "Email",
+        "socialMediaLabel": "Соціальні мережі",
+        "listingLabel": "Лот",
+        "notesLabel": "Нотатки",
+        "submitLabel": "Додати",
+        "submittingLabel": "Додавання…",
+        "deleteButton": "Видалити клієнта",
+        "confirmDeleteTitle": "Видалити клієнта?",
+        "confirmDeleteMessage": "Цю дію неможливо скасувати. Клієнта буде видалено остаточно.",
+        "namePlaceholder": "Іван Петренко",
+        "phonePlaceholder": "+380 XX XXX XX XX",
+        "emailPlaceholder": "example{'@'}gmail.com",
+        "socialMediaPlaceholder": "instagram.com/username або {'@'}telegram_username",
+        "notesPlaceholder": "Додаткова інформація про клієнта...",
+        "employeeLabel": "Відповідальний співробітник",
+        "employeeNotAssigned": "Не призначено",
+        "leadSourceLabel": "Джерело ліда",
+        "leadSourceNotSpecified": "Не вказано"
+      },
+      "boardSettings": {
+        "openButton": "Налаштувати дошку",
+        "title": "Налаштування колонок",
+        "newStagePlaceholder": "Назва нової колонки",
+        "addStageButton": "Додати колонку",
+        "deleteConflict": "Спочатку перемістіть клієнтів з цієї колонки"
+      },
+      "viewMode": {
+        "label": "Вид відображення",
+        "kanban": "Канбан",
+        "list": "Список"
+      },
+      "card": {
+        "responsibleEmployee": "Менеджер: {name}"
+      },
+      "employeeFilter": {
+        "triggerLabel": "Співробітники",
+        "allOption": "Всі",
+        "onlyMeOption": "Тільки я",
+        "unassignedOption": "Без відповідального",
+        "resetButton": "Скинути"
+      },
+      "list": {
+        "searchPlaceholder": "Пошук за ім'ям або телефоном...",
+        "allStages": "Усі стадії",
+        "empty": "Немає клієнтів, що відповідають фільтру.",
+        "columns": {
+          "name": "Ім'я",
+          "phone": "Телефон",
+          "email": "Email",
+          "socialMedia": "Соціальні мережі",
+          "listing": "Лот",
+          "stage": "Стадія",
+          "createdAt": "Дата створення",
+          "employee": "Відповідальний",
+          "type": "Тип"
+        }
+      },
+      "typeLabels": {
+        "seller": "Продавець",
+        "buyer": "Покупець"
+      },
+      "picker": {
+        "searchPlaceholder": "Пошук за ім'ям або телефоном...",
+        "noResults": "Клієнтів не знайдено",
+        "addNewButton": "+ Додати нового клієнта",
+        "backToListButton": "Назад до списку"
+      }
+    },
+    "composer": {
+      "title": "Соц мережі",
+      "manualButton": "Завантажити вручну",
+      "pickListingButton": "Обрати лот",
+      "sourceLabel": "Джерело",
+      "textLabel": "Текст поста",
+      "textPlaceholder": "Напишіть текст оголошення або оберіть лот для автозаповнення...",
+      "photosLabel": "Фото",
+      "addPhotoButton": "Додати фото",
+      "noListingPhotos": "У цього лота ще немає завантажених фото. Додайте фото вручну.",
+      "loadingListingPhotos": "Завантаження фото лота…",
+      "copyButton": "Копіювати текст",
+      "copiedFeedback": "Скопійовано!",
+      "sendNotice": "Надсилання безпосередньо в Telegram поки не підключено — скопіюйте текст і опублікуйте вручну.",
+      "pickerTitle": "Оберіть лот",
+      "searchPlaceholder": "Пошук за маркою, моделлю або роком...",
+      "noListingsFound": "Лотів не знайдено.",
+      "confirmTitle": "Замінити поточний вміст?",
+      "confirmClearMessage": "Поточний текст і фото буде втрачено. Продовжити?",
+      "confirmReplaceMessage": "Поточний текст і фото буде замінено даними обраного лота. Продовжити?",
+      "notConnectedBanner": "Щоб публікувати пости напряму в Telegram, підключіть канал у Налаштуваннях",
+      "notConnectedBannerEmployee": "Telegram-канал ще не підключено. Зверніться до власника акаунту, щоб підключити його в Налаштуваннях.",
+      "goToSettingsLink": "Перейти до Налаштувань",
+      "sendButton": "Надіслати в Telegram",
+      "sendingButton": "Надсилання…",
+      "photosNotSentHint": "Фото поки не надсилаються автоматично в Telegram — лише текст. Скопіюйте фото вручну.",
+      "publishSuccessMessage": "Пост успішно опубліковано в Telegram"
+    },
+    "employees": {
+      "title": "Співробітники",
+      "emptyTitle": "Співробітників поки немає",
+      "emptySubtitle": "Натисніть \"Запросити співробітника\", щоб надіслати перше запрошення.",
+      "activeStatus": "Активний",
+      "inactiveStatus": "Звільнено",
+      "emailLabel": "Email",
+      "assignedClientsCount": "Призначено клієнтів: {count}",
+      "viewClientsLink": "Переглянути клієнтів",
+      "clientsModal": {
+        "title": "Клієнти співробітника {name}",
+        "loading": "Завантаження…"
+      },
+      "deactivateButton": "Звільнити",
+      "deactivateConfirmTitle": "Звільнити співробітника?",
+      "deactivateConfirmMessage": "Співробітник стане неактивним і більше не буде доступний для призначення на нових клієнтів. Історія попередніх призначень збережеться.",
+      "reactivateButton": "Активувати знову",
+      "coFounderBadge": "Співзасновник",
+      "promoteToCoFounderButton": "Призначити співзасновником",
+      "promoteConfirmTitle": "Призначити співзасновником?",
+      "promoteConfirmMessage": "Співробітник отримає всі права власника компанії, окрім можливості призначати інших співзасновників.",
+      "demoteCoFounderButton": "Зняти роль співзасновника",
+      "demoteConfirmTitle": "Зняти роль співзасновника?",
+      "demoteConfirmMessage": "Користувач втратить права співзасновника і стане звичайним співробітником.",
+      "stats": {
+        "sectionTitle": "Статистика ефективності",
+        "loading": "Завантаження…",
+        "startedAtLabel": "Працює з",
+        "totalSoldLabel": "Продано авто",
+        "averageCheckLabel": "Середній чек",
+        "totalProfitLabel": "Приніс компанії",
+        "currentMonthPlanLabel": "План цього місяця",
+        "noPlanAssigned": "План не призначено",
+        "plansCompletedLabel": "Виконав план",
+        "plansMissedLabel": "Не виконав план",
+        "efficiencyRateLabel": "Коефіцієнт ефективності",
+        "noDataYet": "Ще немає даних для розрахунку"
+      },
+      "form": {
+        "firstNameLabel": "Ім'я",
+        "firstNamePlaceholder": "Іван",
+        "lastNameLabel": "Прізвище",
+        "lastNamePlaceholder": "Петренко",
+        "phoneLabel": "Телефон",
+        "phonePlaceholder": "+380 XX XXX XX XX",
+        "socialLinksLabel": "Соціальні мережі",
+        "socialLinksPlaceholder": "instagram.com/username або {'@'}telegram_username",
+        "addSocialLinkButton": "+ Додати посилання",
+        "positionLabel": "Посада",
+        "positionNotAssigned": "Не призначено"
+      },
+      "positions": {
+        "manageButton": "Керувати посадами",
+        "title": "Посади",
+        "empty": "Посад поки немає",
+        "newPositionPlaceholder": "Назва нової посади",
+        "addButton": "+ Додати посаду",
+        "deleteConflict": "Спочатку призначте цим співробітникам іншу посаду"
+      },
+      "invites": {
+        "inviteButton": "Запросити співробітника",
+        "modalTitle": "Запросити співробітника",
+        "emailLabel": "Email (необов'язково)",
+        "emailPlaceholder": "example{'@'}gmail.com",
+        "emailHint": "Залиште порожнім, якщо хочете надіслати посилання будь-яким способом",
+        "generateButton": "Згенерувати посилання",
+        "generating": "Генерування…",
+        "linkLabel": "Посилання-запрошення",
+        "copyButton": "Копіювати посилання",
+        "copiedFeedback": "Скопійовано!",
+        "shareHint": "Надішліть це посилання співробітнику через Telegram, email чи будь-яким зручним способом — посилання дійсне 7 днів.",
+        "sectionTitle": "Запрошення",
+        "empty": "Запрошень поки немає.",
+        "noEmailRestriction": "Без обмеження",
+        "cancelButton": "Скасувати",
+        "cancelConfirmTitle": "Скасувати запрошення?",
+        "cancelConfirmMessage": "Посилання-запрошення більше не можна буде використати.",
+        "cancelConfirmButton": "Скасувати запрошення",
+        "cancelGoBackButton": "Назад",
+        "cancelReasonLabel": "Причина (необов'язково)",
+        "cancelReasonPlaceholder": "Наприклад: помилка в email, більше не потрібно...",
+        "usedAtLabel": "Використано",
+        "cancellationReasonLabel": "Причина скасування",
+        "noCancellationReason": "Причину скасування не вказано.",
+        "expiredAtLabel": "Протерміновано",
+        "columns": {
+          "email": "Email",
+          "position": "Посада",
+          "createdAt": "Дата створення",
+          "status": "Статус"
+        },
+        "status": {
+          "active": "Активне",
+          "used": "Використане",
+          "revoked": "Скасоване",
+          "expired": "Протерміноване"
+        }
+      }
+    },
+    "salesPlans": {
+      "title": "Плани продажів",
+      "monthLabel": "Місяць",
+      "emptyTitle": "Немає активних співробітників",
+      "emptySubtitle": "Плани продажів можна призначити після появи співробітників у команді.",
+      "columns": {
+        "employee": "Співробітник",
+        "target": "План на місяць",
+        "actual": "Продано",
+        "progress": "Прогрес",
+        "status": "Статус"
+      },
+      "companyTotal": "Компанія загалом",
+      "targetPlaceholder": "План",
+      "noPlanAssigned": "План не призначено",
+      "invalidTargetError": "План повинен бути цілим числом більше 0",
+      "status": {
+        "no_plan": "Не призначено",
+        "in_progress": "В процесі",
+        "completed": "Виконано"
+      }
+    }
+  },
+  "listingStatus": {
+    "draft": "Чернетка",
+    "active": "Активний",
+    "reserved": "Заброньовано",
+    "sold": "Продано",
+    "removed": "Знято з продажу",
+    "on_service": "На СТО"
+  },
+  "listingForm": {
+    "addTitle": "Додати лот",
+    "sellerSection": "Дані продавця",
+    "sellerNameLabel": "Ім'я",
+    "sellerNamePlaceholder": "Іван Петренко",
+    "sellerPhoneLabel": "Телефон",
+    "sellerPhonePlaceholder": "+380 XX XXX XX XX",
+    "sellerEmailLabel": "Email (необов'язково)",
+    "sellerEmailPlaceholder": "example{'@'}gmail.com",
+    "sellerSocialMediaLabel": "Соціальні мережі (необов'язково)",
+    "sellerSocialMediaPlaceholder": "instagram.com/username або {'@'}telegram_username",
+    "sellerEmployeeLabel": "Відповідальний співробітник",
+    "technicalSection": "Технічні характеристики",
+    "brandLabel": "Марка",
+    "modelLabel": "Модель",
+    "yearLabel": "Рік випуску",
+    "mileageLabel": "Пробіг, км",
+    "vinLabel": "VIN (необов'язково)",
+    "bodyTypeLabel": "Тип кузова",
+    "transmissionLabel": "Коробка передач",
+    "engineLabel": "Двигун",
+    "colorLabel": "Колір",
+    "conditionSection": "Стан",
+    "conditionLabel": "Стан авто",
+    "conditionNew": "Нове",
+    "conditionUsed": "Вживане",
+    "conditionDescriptionLabel": "Опис стану (необов'язково)",
+    "trimLevelLabel": "Комплектація (необов'язково)",
+    "trimLevelPlaceholder": "Наприклад: Comfort, Sport Line",
+    "commercialSection": "Комерційний блок",
+    "purchasePriceLabel": "Ціна закупки",
+    "additionalExpensesLabel": "Додаткові витрати",
+    "totalCostLabel": "Загальна собівартість",
+    "salePriceLabel": "Ціна продажу",
+    "netProfitLabel": "Чистий прибуток",
+    "discountAmountLabel": "Сума знижки (необов'язково)",
+    "discountExceedsSalePrice": "Знижка не може перевищувати ціну продажу",
+    "finalPriceLabel": "Ціна зі знижкою",
+    "timelineSection": "Терміни та статус",
+    "dateAddedLabel": "Дата надходження",
+    "deadlineDateLabel": "Дедлайн продажу (необов'язково)",
+    "statusLabel": "Статус",
+    "otherOption": "Інше",
+    "bodyTypeOtherPlaceholder": "Вкажіть тип кузова",
+    "transmissionOtherPlaceholder": "Вкажіть коробку передач",
+    "uploadingPhotosProgress": "Завантаження фото... {completed} з {total}"
+  },
+  "listingDetails": {
+    "notFound": "Лот не знайдено.",
+    "markSold": "Позначити проданим",
+    "markSoldModalTitle": "Продаж лоту",
+    "finalPriceLabel": "Фінальна ціна продажу (необов'язково)",
+    "finalPriceHint": "Залиште порожнім, щоб використати поточну ціну продажу",
+    "confirmMarkSold": "Підтвердити продаж",
+    "deleteConfirmTitle": "Видалити лот?",
+    "deleteConfirmMessage": "Цю дію не можна скасувати.",
+    "deleteReasonLabel": "Причина (необов'язково)",
+    "deleteReasonPlaceholder": "Наприклад: дублікат оголошення, власник передумав продавати...",
+    "soldOn": "Продано",
+    "sellerSection": "Продавець",
+    "noSeller": "Продавець не вказаний",
+    "buyersSection": "Покупці",
+    "noBuyers": "Покупців ще не додано",
+    "deleteBuyerButtonLabel": "Видалити покупця",
+    "deleteBuyerConfirmTitle": "Видалити покупця?",
+    "deleteBuyerConfirmMessage": "Цю дію не можна скасувати",
+    "deleteBuyerReasonLabel": "Причина (необов'язково)",
+    "deleteBuyerReasonPlaceholder": "Наприклад: покупець відмовився від угоди, не відповідає на дзвінки...",
+    "viewOnClientsBoard": "Переглянути на дошці Клієнтів",
+    "photoUploadPartialFailure": "Лот створено, але {count} фото не вдалося завантажити — спробуйте ще раз зі сторінки лота",
+    "movedToArchiveMessage": "Лот переміщено до Архіву",
+    "foreignListingNotice": "Цей лот закріплений за іншим співробітником",
+    "markOnService": "На СТО",
+    "markOnServiceModalTitle": "Відправити лот на СТО",
+    "serviceStartDateLabel": "Дата постановки на СТО",
+    "serviceExpectedEndDateLabel": "Орієнтовна дата забирання (необов'язково)",
+    "serviceNoteLabel": "Примітка (необов'язково)",
+    "serviceNotePlaceholder": "Наприклад: причина, СТО, контакт майстра...",
+    "serviceExpectedEndBeforeStartError": "Орієнтовна дата забирання не може бути раніше дати постановки",
+    "movedToServiceMessage": "Лот переміщено на СТО",
+    "markReserved": "Забронювати",
+    "markReservedModalTitle": "Бронювання лота",
+    "selectBuyerLabel": "Оберіть покупця",
+    "selectedBuyerLabel": "Обраний покупець",
+    "confirmReserve": "Підтвердити бронювання",
+    "reservingButton": "Бронювання…",
+    "movedToReservedMessage": "Лот заброньовано",
+    "reservedBadge": "Заброньовано"
+  },
+  "listingOptions": {
+    "bodyType": {
+      "sedan": "Седан",
+      "hatchback": "Хетчбек",
+      "suv": "Позашляховик / SUV",
+      "universal": "Універсал",
+      "coupe": "Купе",
+      "minivan": "Мінівен",
+      "pickup": "Пікап",
+      "cabriolet": "Кабріолет"
+    },
+    "transmission": {
+      "manual": "Ручна / Механіка",
+      "automatic": "Автомат",
+      "tiptronic": "Типтронік",
+      "robot": "Робот",
+      "variator": "Варіатор",
+      "reductor": "Редуктор"
+    },
+    "fuelType": {
+      "petrol": "Бензин",
+      "diesel": "Дизель",
+      "electric": "Електро",
+      "gas": "Газ",
+      "gasPropanePetrol": "Газ пропан-бутан / Бензин",
+      "gasMethanePetrol": "Газ метан / Бензин",
+      "hybridHev": "Гібрид (HEV)",
+      "hybridPhev": "Гібрид (PHEV)",
+      "hybridMhev": "Гібрид (MHEV)",
+      "hybridReev": "Гібрид (REEV)"
+    }
+  },
+  "clientOptions": {
+    "leadSource": {
+      "tiktok": "TikTok",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "referral": "Порадили знайомі",
+      "sawAdOnline": "Побачив рекламу в інтернеті"
+    }
+  },
+  "ui": {
+    "searchableSelect": {
+      "manualEntry": "Не знайшли? Додати вручну",
+      "backToList": "Обрати зі списку",
+      "noResults": "Нічого не знайдено",
+      "loading": "Завантаження…"
+    }
+  },
+  "landing": {
+    "meta": {
+      "title": "Car Garage Tracker для автоплощадок — CRM без хаосу в заявках",
+      "description": "CRM для власників автоплощадок: Kanban клієнтів, картки авто, аналітика продажів і публікація в Telegram. Повний доступ безкоштовно."
+    },
+    "header": {
+      "navFeatures": "Можливості",
+      "navHowItWorks": "Як це працює",
+      "navFaq": "Питання",
+      "ctaButton": "Спробувати безкоштовно"
+    },
+    "hero": {
+      "title": "Жодна заявка на авто більше не загубиться в Telegram і дзвінках",
+      "subtitle": "Одна система замість хаосу в месенджерах і блокнотах: бачите кожного клієнта, кожен лот і кожну угоду на одному екрані.",
+      "primaryCta": "Спробувати безкоштовно 14 днів",
+      "secondaryCta": "Подивитись, як це працює",
+      "socialProof": "Приєднуйтесь до автоплощадок, які вже ведуть клієнтів системно",
+      "mockup": {
+        "columnFirstContact": "Перший контакт",
+        "columnViewing": "Огляд авто",
+        "columnDealClosed": "Угода завершена",
+        "card1Name": "Олена К.",
+        "card1Car": "Toyota Camry 2019",
+        "card2Name": "Ігор П.",
+        "card2Car": "BMW X5 2018",
+        "card3Name": "Марія С.",
+        "card3Car": "Renault Duster 2021"
+      }
+    },
+    "problem": {
+      "title": "Знайоме відчуття?",
+      "items": [
+        {
+          "title": "Заявки губляться між месенджерами",
+          "description": "Клієнт написав в Instagram, подзвонив, написав в Telegram — і десь посередині зник, бо ніхто не встежив."
+        },
+        {
+          "title": "Не пам'ятаєте, кому що обіцяли",
+          "description": "Через тиждень доводиться згадувати, на якому етапі перебуває кожен клієнт і хто за нього відповідає."
+        },
+        {
+          "title": "Менеджер звільнився — і контакти пішли з ним",
+          "description": "Клієнтська база жила в особистому телефоні співробітника, а не в системі компанії."
+        },
+        {
+          "title": "Немає розуміння, хто скільки продав",
+          "description": "Аналітика продажів існує тільки в голові власника, а не в цифрах."
+        }
+      ]
+    },
+    "solution": {
+      "title": "Як це працює",
+      "steps": [
+        {
+          "title": "Додайте авто",
+          "description": "Створіть картку лота з фото, характеристиками і ціною за кілька хвилин."
+        },
+        {
+          "title": "Заявки збираються в одному місці",
+          "description": "Кожен клієнт, який цікавився лотом, потрапляє в CRM — не губиться в чатах."
+        },
+        {
+          "title": "Ведіть клієнта по воронці",
+          "description": "Перетягуйте картку клієнта по етапах на Kanban-дошці: від першого контакту до угоди."
+        },
+        {
+          "title": "Закривайте угоду і бачте цифри",
+          "description": "Позначте лот проданим — і дані одразу потрапляють в аналітику та історію угод."
+        }
+      ]
+    },
+    "features": {
+      "title": "Ключові можливості",
+      "items": [
+        {
+          "title": "Kanban-дошка угод і клієнтів",
+          "description": "Бачите весь конвеєр продажів на одному екрані і перетягуєте клієнтів між етапами."
+        },
+        {
+          "title": "Картки авто з фотогалереями",
+          "description": "Виставляєте авто за хвилину, фото самі оптимізуються під швидке завантаження."
+        },
+        {
+          "title": "Профілі співробітників і ролі",
+          "description": "Новий менеджер розбереться за день, а не за тиждень — з чіткими правами доступу."
+        },
+        {
+          "title": "Курси валют ПриватБанку",
+          "description": "Ціни завжди актуальні — курс оновлюється автоматично, рахувати вручну не потрібно."
+        },
+        {
+          "title": "Аналітика та історія угод",
+          "description": "Знаєте, хто скільки продав і з якою маржею — без екселю."
+        },
+        {
+          "title": "Telegram-інтеграція",
+          "description": "Публікуєте авто в канал компанії, не виходячи з CRM."
+        }
+      ]
+    },
+    "comparison": {
+      "title": "Було / стало",
+      "withoutTitle": "Без системи",
+      "withoutItems": [
+        "Заявки губляться між Instagram, Telegram і дзвінками",
+        "Клієнтська база — в особистих телефонах менеджерів",
+        "Ніхто не знає, на якому етапі кожна угода",
+        "Аналітика продажів — тільки в голові власника"
+      ],
+      "withTitle": "З Car Garage Tracker",
+      "withItems": [
+        "Кожна заявка потрапляє в єдиний Kanban на дошку",
+        "Клієнти належать компанії, а не окремому співробітнику",
+        "Видно етап кожної угоди в реальному часі",
+        "Аналітика та історія угод — в кілька кліків"
+      ]
+    },
+    "pricing": {
+      "title": "На старті — повний доступ до всіх можливостей безкоштовно",
+      "description": "Жодних тарифів і прихованих обмежень.",
+      "items": [
+        "Kanban-дошка угод і клієнтів",
+        "Необмежена кількість лотів та фото",
+        "Профілі співробітників і ролі доступу",
+        "Аналітика, історія угод і Telegram-інтеграція"
+      ],
+      "ctaButton": "Підключити площадку безкоштовно"
+    },
+    "faq": {
+      "title": "Питання, які зазвичай виникають",
+      "items": [
+        {
+          "question": "Чи складно перенести дані з Excel?",
+          "answer": "Ви створюєте лоти вручну через форму додавання авто — швидко і структуровано, без імпорту файлів. Характеристики, фото і ціни вносяться за кілька хвилин на лот."
+        },
+        {
+          "question": "Скільки часу займе підключення?",
+          "answer": "Реєстрація займає кілька хвилин: вкажіть дані компанії, додайте перший лот — і можна вести клієнтів."
+        },
+        {
+          "question": "Чи бачать мої дані інші компанії?",
+          "answer": "Ні. Усі лоти, клієнти і угоди належать вашій компанії і доступні тільки вам та вашим співробітникам."
+        },
+        {
+          "question": "Чи можна дати доступ тільки менеджеру, без адмінки?",
+          "answer": "Так. Співробітник бачить Інвентар, Клієнтів і Kanban нарівні з власником, але не має доступу до керування співробітниками чи налаштувань компанії."
+        },
+        {
+          "question": "Що бачить новий співробітник, коли приєднується?",
+          "answer": "Ви надсилаєте йому посилання-запрошення — він реєструється і одразу потрапляє в компанію з потрібною роллю, без ручного налаштування."
+        },
+        {
+          "question": "Чи можна публікувати авто в Telegram прямо з CRM?",
+          "answer": "Так, підключіть власного Telegram-бота в Налаштуваннях і публікуйте оголошення з фото та текстом прямо з композера."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Припиніть губити заявки — почніть вести клієнтів системно",
+      "ctaButton": "Підключити площадку безкоштовно"
+    },
+    "footer": {
+      "about": "Про продукт",
+      "contacts": "Контакти",
+      "copyright": "© {year} Car Garage Tracker"
+    },
+    "stickyCta": {
+      "button": "Підключити площадку"
+    }
+  }
+}
