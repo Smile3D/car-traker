@@ -11,6 +11,7 @@ Thumbs.db
 .idea/
 .vscode/
 .fleet/
+.cursor/
 
 # Claude Code — локальные, не общие
 .claude/settings.local.json
