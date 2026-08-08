@@ -87,7 +87,13 @@ jobs:
           CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
         run: |
           set -euo pipefail
-          REMOTE_CMD="set -euo pipefail; export IMAGE_TAG='${IMAGE_TAG}'; cd '${DEPLOY_DIR}'; bash scripts/deploy-on-vm.sh '${SERVICE}'"
+          # Inline deploy so CD does not depend on scripts/deploy-on-vm.sh on the VM.
+          if [[ "${SERVICE}" == "all" ]]; then
+            DEPLOY_BODY="docker compose -f docker-compose.prod.yml pull && docker compose -f docker-compose.prod.yml up -d --remove-orphans"
+          else
+            DEPLOY_BODY="docker compose -f docker-compose.prod.yml pull '${SERVICE}' && docker compose -f docker-compose.prod.yml up -d --no-deps --remove-orphans '${SERVICE}'"
+          fi
+          REMOTE_CMD="set -euo pipefail; export IMAGE_TAG='${IMAGE_TAG}'; cd '${DEPLOY_DIR}'; if [[ -d .git ]]; then git pull --ff-only origin main || true; fi; test -f docker-compose.prod.yml; if command -v gcloud >/dev/null 2>&1; then gcloud auth configure-docker '${GAR_LOCATION}-docker.pkg.dev' --quiet; fi; ${DEPLOY_BODY}; docker compose -f docker-compose.prod.yml ps"
           gcloud compute ssh "${VM_SSH_USER}@${VM_NAME}" \
             --project="${GCP_PROJECT_ID}" \
             --zone="${VM_ZONE}" \
