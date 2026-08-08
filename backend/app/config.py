@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     upload_dir: str = "uploads"
 
     # Used to build the confirm-email link sent to a new company owner
-    # ("{frontend_url}/auth/confirm-email?token=..."). Defaults to the same
-    # origin already hardcoded as the CORS allow-origin in main.py.
+    # ("{frontend_url}/auth/confirm-email?token=..."). Also used as the
+    # CORS allow-origin in main.py.
     frontend_url: str = "http://localhost:3000"
 
     # Optional: without it, email_service.py logs the confirmation email to

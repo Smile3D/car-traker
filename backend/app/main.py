@@ -26,6 +26,7 @@ from app.routers import (
 )
 from app.services.archive_cleanup import cleanup_expired_archive
 from app.services.scheduler import CLEANUP_JOB_ID, scheduler
+from app.config import settings
 
 
 @asynccontextmanager
@@ -57,7 +58,7 @@ app = FastAPI(title="Car Garage Tracker", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[settings.frontend_url],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
