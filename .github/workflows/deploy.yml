@@ -1,18 +1,23 @@
 name: Deploy to VM
 
-# CD via appleboy/ssh-action: pull new image(s) and `compose up -d` (no down).
+# CD via IAP SSH: pull new image(s) and `compose up -d` (no down).
+# Does not need GitHub Actions IPs on the firewall — only IAP range
+# 35.235.240.0/20 → tcp/22, plus IAM on GCP_SA_KEY (see below).
 #
 # Secrets:
-#   VM_HOST              — VM public IP
-#   VM_SSH_PRIVATE_KEY   — private key for VM_USERNAME
-#   VM_USERNAME          — optional if set as variable; default pavlo via env below
+#   GCP_SA_KEY           — GitHub Actions SA (Artifact Registry + IAP/SSH IAM)
+#   VM_SSH_PRIVATE_KEY   — private key for VM_SSH_USER (garage-tracker-vm)
 #
-# Variables (optional):
-#   VM_USERNAME          — default: pavlo
-#   DEPLOY_DIR           — default: /home/pavlo/car-traker
+# Variables (optional; defaults match infra-garage):
+#   VM_NAME              — default: car-garage-tracker
+#   VM_ZONE              — default: europe-central2-a
+#   VM_SSH_USER          — default: garage-tracker
+#   DEPLOY_DIR           — default: /home/garage-tracker/car-traker
 #
-# Note: SSH firewall must allow GitHub Actions runners (or your self-hosted
-# runner IP). Your current terraform only allows two fixed IPs.
+# GCP_SA_KEY needs:
+#   roles/iap.tunnelResourceAccessor
+#   roles/compute.instanceAdmin.v1 (or narrower SSH perms)
+#   roles/iam.serviceAccountUser on the VM service account
 
 on:
   workflow_call:
@@ -44,8 +49,11 @@ on:
         default: latest
 
 env:
-  VM_USERNAME: ${{ vars.VM_USERNAME || 'pavlo' }}
-  DEPLOY_DIR: ${{ vars.DEPLOY_DIR || '/home/pavlo/car-traker' }}
+  GCP_PROJECT_ID: car-garage-tracker
+  VM_NAME: ${{ vars.VM_NAME || 'car-garage-tracker' }}
+  VM_ZONE: ${{ vars.VM_ZONE || 'europe-central2-a' }}
+  VM_SSH_USER: ${{ vars.VM_SSH_USER || 'garage-tracker' }}
+  DEPLOY_DIR: ${{ vars.DEPLOY_DIR || '/home/garage-tracker/car-traker' }}
   GAR_LOCATION: europe-central2
 
 permissions:
@@ -55,15 +63,31 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.2.0
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
         with:
-          host: ${{ secrets.VM_HOST }}
-          username: ${{ env.VM_USERNAME }}
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          script: |
-            set -euo pipefail
-            export IMAGE_TAG='${{ inputs.image_tag }}'
-            gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev --quiet
-            cd ${{ env.DEPLOY_DIR }}
-            bash scripts/deploy-on-vm.sh '${{ inputs.service }}'
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Write SSH private key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+      - name: Deploy via IAP SSH
+        env:
+          SERVICE: ${{ inputs.service }}
+          IMAGE_TAG: ${{ inputs.image_tag }}
+        run: |
+          set -euo pipefail
+          REMOTE_CMD="set -euo pipefail; export IMAGE_TAG='${IMAGE_TAG}'; cd '${DEPLOY_DIR}'; bash scripts/deploy-on-vm.sh '${SERVICE}'"
+          gcloud compute ssh "${VM_SSH_USER}@${VM_NAME}" \
+            --project="${GCP_PROJECT_ID}" \
+            --zone="${VM_ZONE}" \
+            --ssh-key-file="${HOME}/.ssh/deploy_key" \
+            --strict-host-key-checking=no \
+            --tunnel-through-iap \
+            --command="${REMOTE_CMD}"
