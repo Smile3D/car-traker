@@ -38,6 +38,8 @@ yarn dev
 bun run dev
 ```
 
+Health check (no auth): http://localhost:3000/health → `{"status":"ok"}`
+
 ## Production
 
 Build the application for production:

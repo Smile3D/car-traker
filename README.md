@@ -15,8 +15,9 @@ docker compose up
 Поднимает три сервиса:
 - **db** — Postgres 16, данные персистентны в volume `pg_data`
 - **backend** — FastAPI на http://localhost:8000 (Swagger: http://localhost:8000/docs),
-  накатывает миграции автоматически при старте
-- **frontend** — Nuxt dev-сервер на http://localhost:3000
+  накатывает миграции автоматически при старте; health: http://localhost:8000/health
+- **frontend** — Nuxt dev-сервер на http://localhost:3000;
+  health: http://localhost:3000/health
 
 Код `backend/` и `frontend/` подключён через bind mount — правки в коде подхватываются
 на лету (hot-reload / `uvicorn --reload`), без пересборки образов.
@@ -67,6 +68,7 @@ docker compose exec backend python -m scripts.seed_demo_data           # соз�
 ## Что уже есть
 
 - Модель `User` + `POST /auth/register`, `POST /auth/login`, `GET /auth/me`
+- Health: `GET /health` (backend) и страница `/health` (frontend) — оба отвечают `{"status":"ok"}`
 - Frontend: `/login`, `/register`, защищённая `/dashboard`, `authStore`, middleware для
   защищённых роутов
 
