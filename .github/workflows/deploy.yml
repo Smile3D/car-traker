@@ -1,0 +1,93 @@
+name: Deploy to VM
+
+# CD via IAP SSH: pull new image(s) and `compose up -d` (no down).
+# Does not need GitHub Actions IPs on the firewall — only IAP range
+# 35.235.240.0/20 → tcp/22, plus IAM on GCP_SA_KEY (see below).
+#
+# Secrets:
+#   GCP_SA_KEY           — GitHub Actions SA (Artifact Registry + IAP/SSH IAM)
+#   VM_SSH_PRIVATE_KEY   — private key for VM_SSH_USER (garage-tracker-vm)
+#
+# Variables (optional; defaults match infra-garage):
+#   VM_NAME              — default: car-garage-tracker
+#   VM_ZONE              — default: europe-central2-a
+#   VM_SSH_USER          — default: garage-tracker
+#   DEPLOY_DIR           — default: /home/garage-tracker/car-traker
+#
+# GCP_SA_KEY needs:
+#   roles/iap.tunnelResourceAccessor
+#   roles/compute.instanceAdmin.v1 (or narrower SSH perms)
+#   roles/iam.serviceAccountUser on the VM service account
+
+on:
+  workflow_call:
+    inputs:
+      service:
+        description: Which compose service to redeploy
+        required: true
+        type: string
+      image_tag:
+        description: Image tag to deploy (git SHA or latest)
+        required: false
+        type: string
+        default: latest
+
+  workflow_dispatch:
+    inputs:
+      service:
+        description: Which compose service to redeploy
+        required: true
+        type: choice
+        options:
+          - all
+          - backend
+          - frontend
+      image_tag:
+        description: Image tag to deploy
+        required: false
+        type: string
+        default: latest
+
+env:
+  GCP_PROJECT_ID: car-garage-tracker
+  VM_NAME: ${{ vars.VM_NAME || 'car-garage-tracker' }}
+  VM_ZONE: ${{ vars.VM_ZONE || 'europe-central2-a' }}
+  VM_SSH_USER: ${{ vars.VM_SSH_USER || 'garage-tracker' }}
+  DEPLOY_DIR: ${{ vars.DEPLOY_DIR || '/home/garage-tracker/car-traker' }}
+  GAR_LOCATION: europe-central2
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Write SSH private key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+      - name: Deploy via IAP SSH
+        env:
+          SERVICE: ${{ inputs.service }}
+          IMAGE_TAG: ${{ inputs.image_tag }}
+        run: |
+          set -euo pipefail
+          REMOTE_CMD="set -euo pipefail; export IMAGE_TAG='${IMAGE_TAG}'; cd '${DEPLOY_DIR}'; bash scripts/deploy-on-vm.sh '${SERVICE}'"
+          gcloud compute ssh "${VM_SSH_USER}@${VM_NAME}" \
+            --project="${GCP_PROJECT_ID}" \
+            --zone="${VM_ZONE}" \
+            --ssh-key-file="${HOME}/.ssh/deploy_key" \
+            --strict-host-key-checking=no \
+            --tunnel-through-iap \
+            --command="${REMOTE_CMD}"
