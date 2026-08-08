@@ -71,16 +71,20 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Write SSH private key
+      - name: Write SSH key pair
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+          # gcloud compute ssh requires a matching .pub next to the private key
+          ssh-keygen -y -f ~/.ssh/deploy_key > ~/.ssh/deploy_key.pub
+          chmod 644 ~/.ssh/deploy_key.pub
 
       - name: Deploy via IAP SSH
         env:
           SERVICE: ${{ inputs.service }}
           IMAGE_TAG: ${{ inputs.image_tag }}
+          CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
         run: |
           set -euo pipefail
           REMOTE_CMD="set -euo pipefail; export IMAGE_TAG='${IMAGE_TAG}'; cd '${DEPLOY_DIR}'; bash scripts/deploy-on-vm.sh '${SERVICE}'"
@@ -90,4 +94,5 @@ jobs:
             --ssh-key-file="${HOME}/.ssh/deploy_key" \
             --strict-host-key-checking=no \
             --tunnel-through-iap \
+            --quiet \
             --command="${REMOTE_CMD}"
