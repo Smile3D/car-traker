@@ -613,14 +613,12 @@ async function handleTelegramDisconnect(): Promise<void> {
             <label class="block text-sm font-medium text-foreground" for="telegram-bot-token">
               {{ t('settings.telegram.botTokenLabel') }}
             </label>
-            <input
+            <PasswordInput
               id="telegram-bot-token"
               v-model="botToken"
-              type="password"
               autocomplete="off"
               :placeholder="t('settings.telegram.botTokenPlaceholder')"
-              class="mt-1.5 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-            >
+            />
           </div>
 
           <div>

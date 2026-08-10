@@ -59,15 +59,13 @@ const onSubmit = handleSubmit(async (values) => {
 
     <div>
       <label class="block text-sm font-medium text-foreground" for="password">{{ t('auth.login.passwordLabel') }} <RequiredMark /></label>
-      <input
+      <PasswordInput
         id="password"
         v-model="password"
-        type="password"
         autocomplete="current-password"
         aria-required="true"
         :aria-invalid="!!passwordError"
-        class="mt-1.5 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-      >
+      />
       <p v-if="passwordError" class="mt-1 text-xs text-destructive">{{ passwordError }}</p>
       <p class="mt-1.5 text-right">
         <NuxtLink to="/auth/forgot-password" class="text-xs font-medium text-primary hover:underline">{{ t('auth.forgotPassword.loginLinkText') }}</NuxtLink>

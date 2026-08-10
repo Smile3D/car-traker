@@ -62,29 +62,25 @@ const onSubmit = handleSubmit(async (values) => {
 
       <div>
         <label class="block text-sm font-medium text-foreground" for="new-password">{{ t('auth.resetPassword.newPasswordLabel') }} <RequiredMark /></label>
-        <input
+        <PasswordInput
           id="new-password"
           v-model="newPassword"
-          type="password"
           autocomplete="new-password"
           aria-required="true"
           :aria-invalid="!!newPasswordError"
-          class="mt-1.5 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-        >
+        />
         <p v-if="newPasswordError" class="mt-1 text-xs text-destructive">{{ newPasswordError }}</p>
       </div>
 
       <div>
         <label class="block text-sm font-medium text-foreground" for="confirm-password">{{ t('auth.resetPassword.confirmPasswordLabel') }} <RequiredMark /></label>
-        <input
+        <PasswordInput
           id="confirm-password"
           v-model="confirmPassword"
-          type="password"
           autocomplete="new-password"
           aria-required="true"
           :aria-invalid="!!confirmPasswordError || passwordMismatch"
-          class="mt-1.5 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-        >
+        />
         <p v-if="passwordMismatch" class="mt-1 text-xs text-destructive">{{ t('auth.resetPassword.passwordMismatch') }}</p>
       </div>
 

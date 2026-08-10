@@ -10,7 +10,9 @@
       "delete": "Удалить",
       "deleting": "Удаление…",
       "close": "Закрыть",
-      "continue": "Продолжить"
+      "continue": "Продолжить",
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль"
     },
     "units": {
       "km": "км",
@@ -291,7 +293,7 @@
   "crm": {
     "sidebar": {
       "dashboard": "Дашборд",
-      "inventory": "Инвентарь",
+      "inventory": "Лоты",
       "addCar": "Добавить авто",
       "archive": "Архив",
       "service": "СТО",
