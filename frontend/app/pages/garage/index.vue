@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BuildingOfficeIcon, PlusIcon, TruckIcon } from '@heroicons/vue/24/outline'
 
-definePageMeta({ middleware: 'auth' })
+definePageMeta({ middleware: 'garage-disabled' })
 
 const { t } = useI18n()
 

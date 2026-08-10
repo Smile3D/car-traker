@@ -16,7 +16,7 @@ import type { RecordType } from '~/types/serviceRecords'
 type MainTab = RecordType | 'charts' | 'fuel' | 'receipts'
 type ChartType = 'monthly-expenses' | 'to-vs-repair' | 'by-mileage' | 'cumulative'
 
-definePageMeta({ middleware: 'auth' })
+definePageMeta({ middleware: 'garage-disabled' })
 
 const { t, n, d } = useI18n()
 
