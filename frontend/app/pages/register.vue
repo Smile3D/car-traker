@@ -32,11 +32,6 @@ if (inviteToken.value) {
   }
 }
 
-// An invite fully determines company/role — the business-account checkbox
-// only matters when registering without one.
-const isForcedBusiness = computed<boolean>(() => route.query.type === 'business' && !inviteToken.value)
-const isBusinessAccount = ref(isForcedBusiness.value)
-
 const { meta, handleSubmit } = useForm()
 
 const { value: email, errorMessage: emailError } = useField<string>('email', validators.email, { initialValue: '' })
@@ -50,7 +45,7 @@ const onSubmit = handleSubmit(async (values) => {
     const { requiresEmailConfirmation } = await authStore.register(
       values.email,
       values.password,
-      isBusinessAccount.value ? 'business' : 'individual',
+      'business',
       inviteToken.value,
       locale.value
     )
@@ -75,7 +70,7 @@ const onSubmit = handleSubmit(async (values) => {
 <template>
   <div>
     <template v-if="!showCheckEmailScreen">
-      <h2 v-if="isForcedBusiness" class="mb-4 text-center text-lg font-semibold text-foreground">
+      <h2 class="mb-4 text-center text-lg font-semibold text-foreground">
         {{ t('auth.register.businessHeading') }}
       </h2>
 
@@ -131,17 +126,6 @@ const onSubmit = handleSubmit(async (values) => {
           />
           <p v-if="passwordError" class="mt-1 text-xs text-destructive">{{ passwordError }}</p>
         </div>
-
-        <!-- BusinessAccountCheckbox: hidden entirely when joining via invite —
-             company/role are already fully determined by the invite token. -->
-        <label v-if="!isForcedBusiness && !inviteToken" class="flex items-center gap-2 text-sm text-foreground">
-          <input
-            v-model="isBusinessAccount"
-            type="checkbox"
-            class="size-4 rounded border-border text-primary focus:ring-1 focus:ring-primary"
-          >
-          {{ t('auth.register.businessCheckbox') }}
-        </label>
 
         <!-- ErrorAlert -->
         <div
