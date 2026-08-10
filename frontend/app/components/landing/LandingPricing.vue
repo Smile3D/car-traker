@@ -24,7 +24,7 @@ const { containerRef } = useScrollReveal()
       </ul>
 
       <NuxtLink
-        to="/register?type=business"
+        to="/register"
         class="landing-display mt-8 inline-flex cursor-pointer items-center justify-center rounded-full bg-[var(--landing-lime)] px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-[var(--landing-lime-ink)] transition-transform hover:scale-105 sm:text-base"
       >
         {{ t('landing.pricing.ctaButton') }}

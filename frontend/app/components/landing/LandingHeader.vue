@@ -40,7 +40,7 @@ const { locale, locales, setLocale, t } = useI18n()
         </div>
 
         <NuxtLink
-          to="/register?type=business"
+          to="/register"
           class="landing-display cursor-pointer rounded-full bg-[var(--landing-lime)] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[var(--landing-lime-ink)] transition-transform hover:scale-105"
         >
           {{ t('landing.header.ctaButton') }}

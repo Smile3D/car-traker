@@ -63,7 +63,7 @@ const kanbanColumns = computed(() => [
           :class="isRevealed ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'"
         >
           <NuxtLink
-            to="/register?type=business"
+            to="/register"
             class="landing-display flex cursor-pointer items-center justify-center rounded-full bg-[var(--landing-lime)] px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-[var(--landing-lime-ink)] shadow-[0_0_0_0_rgba(215,255,63,0.6)] transition-all hover:scale-105 hover:shadow-[0_0_32px_4px_rgba(215,255,63,0.45)] sm:text-base"
           >
             {{ t('landing.hero.primaryCta') }}
