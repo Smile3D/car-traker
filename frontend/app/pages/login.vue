@@ -27,7 +27,7 @@ const onSubmit = handleSubmit(async (values) => {
 
   try {
     await authStore.login(values.email, values.password)
-    router.push(getPostAuthRedirectPath(authStore.user?.company_id))
+    router.push(getPostAuthRedirectPath())
   } catch (error) {
     const apiError = error as ApiError
     if (apiError.code === 'email_not_confirmed') {

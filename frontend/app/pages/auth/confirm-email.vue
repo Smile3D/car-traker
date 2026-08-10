@@ -28,7 +28,7 @@ onMounted(async () => {
 
   try {
     await authStore.confirmEmail(tokenFromQuery.value)
-    router.push(getPostAuthRedirectPath(authStore.user?.company_id))
+    router.push(getPostAuthRedirectPath())
   } catch (error) {
     status.value = 'error'
     errorCode.value = (error as ApiError).code ?? 'invalid'

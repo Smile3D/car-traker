@@ -62,7 +62,7 @@ const onSubmit = handleSubmit(async (values) => {
       // A soft onboarding nudge — an invited employee lands straight on
       // Settings to fill in their own profile, but nothing else is blocked;
       // this only fires right after this one registration, never on later logins.
-      router.push(inviteToken.value ? '/settings' : getPostAuthRedirectPath(authStore.user?.company_id))
+      router.push(inviteToken.value ? '/settings' : getPostAuthRedirectPath())
     }
   } catch (error) {
     errorMessage.value = (error as ApiError).message
